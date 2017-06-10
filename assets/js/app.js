@@ -1,16 +1,93 @@
 /*global document, google*/
 var map, marker, singleLatLng, contentString, infowindow,
-    image = "https://twitchemotes.com/favicon.png";
+    image = "https://68.media.tumblr.com/avatar_bd2e54830b60_128.png";
 
 function initMap() {
     "use strict";
+    var styles = [{
+            "featureType": "administrative",
+            "stylers": [{
+                "saturation": "-100"
+            }]
+        }, {
+            "featureType": "administrative.province",
+            "stylers": [{
+                "visibility": "off"
+            }]
+        }, {
+            "featureType": "landscape",
+            "stylers": [{
+                "saturation": -100
+            }, {
+                "lightness": 65
+            }, {
+                "visibility": "on"
+            }]
+        }, {
+            "featureType": "poi",
+            "stylers": [{
+                "saturation": -100
+            }, {
+                "lightness": "50"
+            }, {
+                "visibility": "simplified"
+            }]
+        }, {
+            "featureType": "road",
+            "stylers": [{
+                "saturation": "-100"
+            }]
+        }, {
+            "featureType": "road.highway",
+            "stylers": [{
+                "visibility": "simplified"
+            }]
+        }, {
+            "featureType": "road.arterial",
+            "stylers": [{
+                "lightness": "30"
+            }]
+        }, {
+            "featureType": "road.local",
+            "stylers": [{
+                "lightness": "40"
+            }]
+        }, {
+            "featureType": "transit",
+            "stylers": [{
+                "saturation": -100
+            }, {
+                "visibility": "simplified"
+            }]
+        }, {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [{
+                "hue": "#ffff00"
+            }, {
+                "lightness": -25
+            }, {
+                "saturation": -97
+            }]
+        }, {
+            "featureType": "water",
+            "elementType": "labels",
+            "stylers": [{
+                "lightness": -25
+            }, {
+                "saturation": -100
+            }]
+        }];
+
     singleLatLng = {
         lat: 40.74135,
         lng: -73.99802
     };
     map = new google.maps.Map(document.getElementById('map'), {
         center: singleLatLng,
-        zoom: 14
+        styles: styles,
+        zoom: 14,
+        mapTypeControl: false
     });
     marker = new google.maps.Marker({
         position: singleLatLng,
@@ -25,11 +102,4 @@ function initMap() {
     marker.addListener('click', function () {
         infowindow.open(map, marker);
     });
-    // TODO: Create a single marker appearing on initialize -
-    // Create it with the position of the singleLatLng,
-    // on the map, and give it your own title!
-    // TODO: create a single infowindow, with your own content.
-    // It must appear on the marker
-    // TODO: create an EVENT LISTENER so that the infowindow opens when
-    // the marker is clicked!
 }
